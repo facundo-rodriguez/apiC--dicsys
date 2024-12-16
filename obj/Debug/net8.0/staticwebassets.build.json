@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "6j6pfDyfgP9cVkbJMXXNEvBMniFcitT3TIjD3J+0DU0=",
+  "Source": "api-dicsys",
+  "BasePath": "_content/api-dicsys",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
