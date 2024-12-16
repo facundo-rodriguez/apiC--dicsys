@@ -8,7 +8,7 @@ namespace api_dicsys.Controllers{
 
     public class ConexionDB{
 
-        private readonly  IConfiguration _configuration;
+        private readonly IConfiguration? _configuration;
 
         //"Server=bp78ntdxq8ntghigikh3-mysql.services.clever-cloud.com;port=3306;Database=bp78ntdxq8ntghigikh3;User=uyihsxgqemg9zbgp;Password=aCXPpxOvdl52lZyE3r1h" //;
         private  string? _connectionString;
@@ -18,7 +18,7 @@ namespace api_dicsys.Controllers{
             //Obténgo la cadena de conexión desde appsettings.json
            //_connectionString = configuration.GetConnectionString("DefaultConnection");
             
-             _configuration= configuration;
+            _configuration= configuration;
         }
 
 
@@ -34,10 +34,8 @@ namespace api_dicsys.Controllers{
                 //cadena de conexión usando las variables de entorno
                 _connectionString = $"Server={host};Database={dbName};User={user};Password={password}";
 
-
                 var connection = new MySqlConnection(_connectionString);
                 
-            
                 await connection.OpenAsync(); // Abre la conexión
                 return connection; // Devuelve la conexión abierta
             }
