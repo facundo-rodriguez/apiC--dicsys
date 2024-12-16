@@ -5,11 +5,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
 # Copia el archivo de proyecto (.csproj) desde la carpeta api-dicsys y restaura las dependencias
-COPY api-dicsys/api-dicsys.csproj ./  # Copiar el archivo .csproj desde la carpeta api-dicsys
-RUN dotnet restore api-dicsys.csproj   # Restaura las dependencias del archivo .csproj
+COPY api-dicsys/api-dicsys.csproj ./  
+# Copiar el archivo .csproj desde la carpeta api-dicsys
+RUN dotnet restore api-dicsys.csproj   
+# Restaura las dependencias del archivo .csproj
 
 # Copia todos los archivos del proyecto desde api-dicsys
-COPY api-dicsys/. ./                   # Copia todo el contenido de la carpeta api-dicsys
+COPY api-dicsys/. ./                   
+# Copia todo el contenido de la carpeta api-dicsys
 
 # Publica la aplicación
 RUN dotnet publish api-dicsys.csproj -c Release -o /app/publish
