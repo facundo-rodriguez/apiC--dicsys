@@ -4,15 +4,12 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia el archivo de proyecto (.csproj) desde la carpeta api-dicsys y restaura las dependencias
-COPY api-dicsys/api-dicsys.csproj ./  
-# Copiar el archivo .csproj desde la carpeta api-dicsys
+# Copia el archivo de proyecto (.csproj) desde la raíz y restaura las dependencias
+COPY api-dicsys.csproj ./  
 RUN dotnet restore api-dicsys.csproj   
-# Restaura las dependencias del archivo .csproj
 
-# Copia todos los archivos del proyecto desde api-dicsys
-COPY api-dicsys/. ./                   
-# Copia todo el contenido de la carpeta api-dicsys
+# Copia todos los archivos del proyecto desde la raíz (ya no hace falta 'api-dicsys/.')
+COPY . ./                   
 
 # Publica la aplicación
 RUN dotnet publish api-dicsys.csproj -c Release -o /app/publish
@@ -27,7 +24,7 @@ WORKDIR /app
 EXPOSE 80
 
 # Copia los archivos de la etapa de construcción
-COPY --from=build /app/publish .  # Copia los archivos publicados
+COPY --from=build /app/publish .  
 
 # Comando para ejecutar la aplicación
 ENTRYPOINT ["dotnet", "api-dicsys.dll"]
